@@ -1,11 +1,14 @@
-import express from 'express';
+import express, { json } from 'express';
 import mongoose from 'mongoose';
-import items from './items';
+// import items from './items';
 require('dotenv/config');
 
 const app = express();
 
-// app.use(json())
+const taskRouter = require("./routes/tasks");
+
+app.use(express.json());
+app.use("/task", taskRouter);
 
 const PORT = process.env.PORT || 3000;
 
