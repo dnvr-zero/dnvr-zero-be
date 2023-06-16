@@ -219,7 +219,7 @@ Some great tools and/or people who helped to make this project what it is!
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/dnvr-zero/dnvr-zero-be.svg?style=for-the-badge
-[contributors-url]: https://github.com/orgs/dnvr-zero/dnvr-zero-be/people
+[contributors-url]: https://github.com/orgs/dnvr-zero/dnvr-zero-be/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/dnvr-zero/dnvr-zero.svg?style=for-the-badge
 [forks-url]: https://github.com/dnvr-zero/dnvr-zero-be/network/members
 [stars-shield]: https://img.shields.io/github/stars/dnvr-zero/dnvr-zero-be.svg?style=for-the-badge
