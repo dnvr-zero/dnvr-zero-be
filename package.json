@@ -2,7 +2,7 @@
   "name": "dnvr-zero-be",
   "version": "1.0.0",
   "description": "quick readme",
-  "main": "src/app.js",
+  "main": "dist/app.js",
   "directories": {
     "test": "test"
   },
