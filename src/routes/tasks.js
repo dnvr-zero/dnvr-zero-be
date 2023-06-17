@@ -24,8 +24,8 @@ router.post("/", (request, response) => {
 
 router.delete("/:id", (request, response) => {
   Tasks.findOneAndDelete({ _id: request.params.id })
-    .then((resp) => request.status(200).json(resp))
-    .catch((err) => res.status(400).json("Request Failed"));
+    .then((resp) => response.status(200).json(resp))
+    .catch((err) => response.status(400).json("Request Failed"));
 });
 
 router.post("/delete", (request, response) => {
