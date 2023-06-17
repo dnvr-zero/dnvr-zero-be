@@ -29,3 +29,4 @@ _mongoose.default.connect(process.env.DB_CONNECTION, {
   useUnifiedTopology: true
 }).then(() => console.log("DB Connected ")).catch(err => console.log('error'));
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+module.exports = app;
