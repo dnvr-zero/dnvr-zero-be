@@ -28,12 +28,6 @@ router.delete("/:id", (request, response) => {
     .catch((err) => response.status(400).json("Request Failed"));
 });
 
-router.post("/delete", (request, response) => {
-  Tasks.deleteMany({_id: list, list: { $in: request.body.list } })
-  .then((resp) => response.status(200).json(resp))
-  .catch((err) => response.status(400).json("Request Failed"));
-});
-
 router.get("/:id", (request, response) => {
   Tasks.findById(request.params.id)
     .then((resp) => response.status(200).json(resp))
