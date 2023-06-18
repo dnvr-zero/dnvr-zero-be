@@ -26,12 +26,15 @@ const options = {
                 name: "Michael Marchand",
                 email: "MichaelDavidMarchand@gmail.com",
             },
-            servers: ["http://localhost:3000"],
         },
         servers: [
             {
                 url: "https://dnvr-zero-be.vercel.app",
                 description: "Production Server",
+            },
+            {
+                url: "http://localhost:3000",
+                description: "Development Server",
             },
         ],
 
@@ -75,6 +78,11 @@ const options = {
 
 const swaggerDocs = swaggerJsdoc(options)
 app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
+app.get("/docs.json", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.send(swaggerDocs);
+});
 
 // Routes
 app.get("/", async (request, response) => {

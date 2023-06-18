@@ -83,7 +83,7 @@ router.delete("/:id", (request, response) => {
  *    tags:
  *      - [task/:id]
  *    summary: request a single task
- *    description: If you have a task id, simply add it to the endpoint in place of `:id`
+ *    description: If you have a task id, simply add it to the endpoint in place of `{taskId}`
  *    responses:
  *      '200':
  *        description: A successful response
