@@ -1,5 +1,5 @@
-import express, { json } from 'express';
-import mongoose from 'mongoose';
+import express, { json } from "express"
+import mongoose from "mongoose"
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
 require("dotenv/config")
@@ -16,6 +16,26 @@ const PORT = process.env.PORT || 3000
 const options = {
     swaggerDefinition: {
         openapi: "3.0.0",
+        info: {
+            title: "dnvr-zero-be",
+            summary: "the backend endpoints for the SOA of dnvr-zero",
+            description:
+                "documentation for the available endpoints to retrieve, update, delete data from dnvr-zero-be",
+            version: "3.0.0",
+            contact: {
+                name: "Michael Marchand",
+                email: "MichaelDavidMarchand@gmail.com",
+            },
+            servers: ["http://localhost:3000"],
+        },
+        servers: [
+            {
+                url: "https://dnvr-zero-be.vercel.app",
+                description: "Production Server",
+            },
+        ],
+
+        paths: {},
         components: {
             schemas: {
                 TaskItem: {
@@ -24,7 +44,7 @@ const options = {
                     properties: {
                         name: {
                             type: "string",
-                            example: "username",
+                            example: "name of task",
                         },
                         description: {
                             type: "string",
@@ -36,22 +56,18 @@ const options = {
                         },
                         createdby: {
                             type: "string",
-                            example: "Bob Robbedsky"
-                        }
+                            example: "Anon Player",
+                        },
                     },
                 },
             },
         },
-        info: {
-            title: "dnvr-zero-be",
-            summary: "the backend endpoints for the SOA of dnvr-zero",
+        security: [],
+        tags: [],
+        externalDocs: {
             description:
-                "documentation for the available endpoints to retrieve, udpate, delete data from dnvr-zero-be",
-            version: "3.0.0",
-            contact: {
-                name: "Michael Marchand",
-            },
-            servers: ["http://localhost:3000"],
+                "To see additional documentation for the project, click here",
+            url: "https://github.com/dnvr-zero",
         },
     },
     apis: ["src/routes/*.js"],
@@ -72,8 +88,8 @@ mongoose
         useUnifiedTopology: true,
     })
     .then(() => console.log("DB Connected "))
-    .catch((err) => console.log('error'));
+    .catch((err) => console.log("error"))
 
-app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+app.listen(PORT, () => console.log(`App listening at port ${PORT}`))
 
-module.exports = app;
+module.exports = app
