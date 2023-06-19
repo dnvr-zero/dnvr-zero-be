@@ -27,7 +27,6 @@ const options = {
                 name: "Michael Marchand",
                 email: "MichaelDavidMarchand@gmail.com",
             },
-            servers: ['http://localhost:3000']
         },
         servers: [
             {

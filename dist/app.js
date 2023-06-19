@@ -24,8 +24,7 @@ const options = {
       contact: {
         name: "Michael Marchand",
         email: "MichaelDavidMarchand@gmail.com"
-      },
-      servers: ['http://localhost:3000']
+      }
     },
     servers: [{
       url: "https://dnvr-zero-be.vercel.app",
