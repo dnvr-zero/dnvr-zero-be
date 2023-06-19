@@ -13,7 +13,11 @@ const app = (0, _express.default)();
 const taskRouter = require("./routes/tasks");
 app.use(_express.default.json());
 app.use("/task", taskRouter);
-app.use((0, _cors.default)());
+const corsConfig = {
+  origin: true,
+  methods: ['GET', 'POST', 'PATCH']
+};
+app.use((0, _cors.default)(corsConfig));
 const PORT = process.env.PORT || 3000;
 const options = {
   swaggerDefinition: {

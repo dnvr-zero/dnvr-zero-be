@@ -5,13 +5,20 @@ import swaggerUi from "swagger-ui-express"
 import cors from "cors"
 require("dotenv/config")
 
-const app = express();
+const app = express()
 
-const taskRouter = require("./routes/tasks");
+const taskRouter = require("./routes/tasks")
 
-app.use(express.json());
-app.use("/task", taskRouter);
-app.use(cors());
+app.use(express.json())
+app.use("/task", taskRouter)
+
+const corsConfig = {
+    origin: true,
+    methods: [ 'GET', 'POST', 'PATCH']
+}
+app.use(
+    cors(corsConfig)
+)
 
 const PORT = process.env.PORT || 3000
 
@@ -82,9 +89,9 @@ const swaggerDocs = swaggerJsdoc(options)
 app.use("/apidocs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.get("/docs.json", (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    res.send(swaggerDocs);
-});
+    res.setHeader("Content-Type", "application/json")
+    res.send(swaggerDocs)
+})
 
 // Routes
 app.get("/", async (request, response) => {
