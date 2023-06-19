@@ -2,14 +2,16 @@ import express, { json } from "express"
 import mongoose from "mongoose"
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
+import cors from "cors"
 require("dotenv/config")
 
-const app = express()
+const app = express();
 
-const taskRouter = require("./routes/tasks")
+const taskRouter = require("./routes/tasks");
 
-app.use(express.json())
-app.use("/task", taskRouter)
+app.use(express.json());
+app.use("/task", taskRouter);
+app.use(cors());
 
 const PORT = process.env.PORT || 3000
 
