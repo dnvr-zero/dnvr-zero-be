@@ -1,13 +1,8 @@
 import express from "express"
-// import cors from "cors"
 
 const router = express.Router()
 const Tasks = require("../models/Tasks")
 
-// const corsOptions = {
-//     origin: true,
-//     methods: ['GET', 'POST', 'PATCH']
-// }
 
 // Routes
 /**
@@ -142,8 +137,5 @@ router.delete("/:id", (request, response) => {
         .then((resp) => response.status(200).json(resp))
         .catch((err) => response.status(400).json("Request Failed"))
 })
-
-
-
 
 module.exports = router
