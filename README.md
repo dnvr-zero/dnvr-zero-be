@@ -142,7 +142,7 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 
 ## Schema
 
-TBD (WIP)
+<img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/dnvr-zero-schema.jpeg" alt="Logo">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
