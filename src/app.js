@@ -2,7 +2,7 @@ import express, { json } from "express"
 import mongoose from "mongoose"
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
-// import cors from "cors"
+import cors from "cors"
 require("dotenv/config")
 
 const app = express()
@@ -12,13 +12,13 @@ const taskRouter = require("./routes/tasks")
 app.use(express.json())
 app.use("/task", taskRouter)
 
-// const corsConfig = {
-//     origin: true,
-//     methods: [ 'GET', 'POST', 'PATCH']
-// }
-// app.use(
-//     cors(corsConfig)
-// )
+const corsConfig = {
+    origin: true,
+    methods: [ 'GET', 'POST', 'PATCH']
+}
+app.use(
+    cors(corsConfig)
+)
 
 const PORT = process.env.PORT || 3000
 
