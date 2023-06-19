@@ -1,13 +1,13 @@
 import express from "express"
-import cors from "cors"
+// import cors from "cors"
 
 const router = express.Router()
 const Tasks = require("../models/Tasks")
 
-const corsOptions = {
-    origin: true,
-    methods: ['GET', 'POST', 'PATCH']
-}
+// const corsOptions = {
+//     origin: true,
+//     methods: ['GET', 'POST', 'PATCH']
+// }
 
 // Routes
 /**
@@ -24,7 +24,7 @@ const corsOptions = {
  *      '400':
  *        description: Request Failed
  * */
-router.get("/", cors(corsOptions), (request, response) => {
+router.get("/", (request, response) => {
     Tasks.find()
         .then((resp) => response.status(200).json(resp))
         .catch((err) => response.status(400).json("Request Failed"))
