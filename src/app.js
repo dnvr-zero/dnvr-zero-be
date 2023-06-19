@@ -37,8 +37,6 @@ const options = {
                 description: "Development Server",
             },
         ],
-
-        paths: {},
         components: {
             schemas: {
                 TaskItem: {
@@ -65,8 +63,6 @@ const options = {
                 },
             },
         },
-        security: [],
-        tags: [],
         externalDocs: {
             description:
                 "To see additional documentation for the project, click here",

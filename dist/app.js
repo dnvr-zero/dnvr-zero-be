@@ -33,7 +33,6 @@ const options = {
       url: "http://localhost:3000",
       description: "Development Server"
     }],
-    paths: {},
     components: {
       schemas: {
         TaskItem: {
@@ -60,8 +59,6 @@ const options = {
         }
       }
     },
-    security: [],
-    tags: [],
     externalDocs: {
       description: "To see additional documentation for the project, click here",
       url: "https://github.com/dnvr-zero"
