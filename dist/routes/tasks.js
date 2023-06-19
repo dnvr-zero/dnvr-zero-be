@@ -1,14 +1,16 @@
 "use strict";
 
 var _express = _interopRequireDefault(require("express"));
-var _cors = _interopRequireDefault(require("cors"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// import cors from "cors"
+
 const router = _express.default.Router();
 const Tasks = require("../models/Tasks");
-const corsOptions = {
-  origin: true,
-  methods: ['GET', 'POST', 'PATCH']
-};
+
+// const corsOptions = {
+//     origin: true,
+//     methods: ['GET', 'POST', 'PATCH']
+// }
 
 // Routes
 /**
@@ -25,7 +27,7 @@ const corsOptions = {
  *      '400':
  *        description: Request Failed
  * */
-router.get("/", (0, _cors.default)(corsOptions), (request, response) => {
+router.get("/", (request, response) => {
   Tasks.find().then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
 
