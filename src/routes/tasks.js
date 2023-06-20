@@ -3,7 +3,6 @@ import express from "express"
 const router = express.Router()
 const Tasks = require("../models/Tasks")
 
-
 // Routes
 /**
  * @swagger
@@ -45,7 +44,7 @@ router.get("/", (request, response) => {
  *        description: Missing required field
  * */
 router.post("/", (request, response) => {
-    const { name, createdby, description, points } = request.body
+    const { name, description, points, createdby } = request.body
     const task = new Tasks({
         name,
         createdby,
