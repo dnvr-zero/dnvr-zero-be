@@ -6,7 +6,9 @@ const cors = require("cors")
 require("dotenv/config")
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: 'https://dnvr-zero-be.vercel.app/task'
+}))
 
 const taskRouter = require("./routes/tasks")
 const playerRouter = require("./routes/players")
@@ -15,7 +17,7 @@ const playerRouter = require("./routes/players")
 app.use("/task", taskRouter)
 app.use("/player", playerRouter)
 
-const PORT = process.env.PORT || 3000
+const PORT = 8000
 
 const options = {
     swaggerDefinition: {
@@ -30,11 +32,11 @@ const options = {
                 name: "Michael Marchand",
                 email: "MichaelDavidMarchand@gmail.com",
             },
-            servers: ["http://localhost:3000"],
+            servers: ["http://localhost:8000"],
         },
         servers: [
             {
-                url: "http://localhost:3000",
+                url: "http://localhost:8000",
                 description: "Development Server",
             },
         ],

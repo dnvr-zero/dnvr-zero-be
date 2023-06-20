@@ -7,12 +7,19 @@ var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const cors = require("cors");
 require("dotenv/config");
 const app = (0, _express.default)();
+app.use(cors({
+  origin: 'https://dnvr-zero-be.vercel.app/task'
+}));
 const taskRouter = require("./routes/tasks");
-app.use(_express.default.json());
+const playerRouter = require("./routes/players");
+
+// app.use(express.json());
 app.use("/task", taskRouter);
-const PORT = process.env.PORT || 3000;
+app.use("/player", playerRouter);
+const PORT = 8000;
 const options = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -24,13 +31,11 @@ const options = {
       contact: {
         name: "Michael Marchand",
         email: "MichaelDavidMarchand@gmail.com"
-      }
+      },
+      servers: ["http://localhost:8000"]
     },
     servers: [{
-      url: "https://dnvr-zero-be.vercel.app",
-      description: "Production Server"
-    }, {
-      url: "http://localhost:3000",
+      url: "http://localhost:8000",
       description: "Development Server"
     }],
     components: {
@@ -54,6 +59,32 @@ const options = {
             createdby: {
               type: "string",
               example: "Anon Player"
+            }
+          }
+        },
+        PlayerItem: {
+          type: "object",
+          required: ["username"],
+          properties: {
+            username: {
+              type: "string",
+              example: "userName"
+            },
+            level: {
+              type: "Number",
+              example: "1"
+            },
+            all_time_score: {
+              type: "Number",
+              example: "50"
+            },
+            email: {
+              type: "string",
+              example: "email@email.com"
+            },
+            group_id: {
+              type: "Number",
+              example: "1"
             }
           }
         }

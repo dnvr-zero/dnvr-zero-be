@@ -46,9 +46,9 @@ router.get("/", (request, response) => {
 router.post("/", (request, response) => {
   const {
     name,
-    createdby,
     description,
-    points
+    points,
+    createdby
   } = request.body;
   const task = new Tasks({
     name,
