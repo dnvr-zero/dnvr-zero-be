@@ -2,14 +2,18 @@ import express, { json } from "express"
 import mongoose from "mongoose"
 import swaggerJsdoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
+const cors = require("cors")
 require("dotenv/config")
 
 const app = express()
+app.use(cors())
 
 const taskRouter = require("./routes/tasks")
+const playerRouter = require("./routes/players")
 
-app.use(express.json())
+// app.use(express.json());
 app.use("/task", taskRouter)
+app.use("/player", playerRouter)
 
 const PORT = process.env.PORT || 3000
 
@@ -26,12 +30,9 @@ const options = {
                 name: "Michael Marchand",
                 email: "MichaelDavidMarchand@gmail.com",
             },
+            servers: ["http://localhost:3000"],
         },
         servers: [
-            {
-                url: "https://dnvr-zero-be.vercel.app",
-                description: "Production Server",
-            },
             {
                 url: "http://localhost:3000",
                 description: "Development Server",
@@ -58,6 +59,32 @@ const options = {
                         createdby: {
                             type: "string",
                             example: "Anon Player",
+                        },
+                    },
+                },
+                PlayerItem: {
+                    type: "object",
+                    required: ["username"],
+                    properties: {
+                        username: {
+                            type: "string",
+                            example: "userName",
+                        },
+                        level: {
+                            type: "Number",
+                            example: "1",
+                        },
+                        all_time_score: {
+                            type: "Number",
+                            example: "50",
+                        },
+                        email: {
+                            type: "string",
+                            example: "email@email.com",
+                        },
+                        group_id: {
+                            type: "Number",
+                            example: "1",
                         },
                     },
                 },
