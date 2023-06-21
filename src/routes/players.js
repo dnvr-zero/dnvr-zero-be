@@ -44,12 +44,13 @@ playerRouter.get("/", (request, response) => {
  *        description: Missing required field
  * */
 playerRouter.post("/", (request, response) => {
-    const { username, level, score, group_id } = request.body
+    const { username, level, score, group_id, email } = request.body
     const player = new Players({
-        name,
-        createdby,
-        description,
-        points,
+        username,
+        level,
+        score,
+        email,
+        group_id
     })
     player.save()
         .then((resp) => response.status(201).json(resp))
