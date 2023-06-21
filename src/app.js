@@ -11,9 +11,8 @@ app.use(cors())
 const taskRouter = require("./routes/tasks")
 const playerRouter = require("./routes/players")
 
-// app.use(express.json());
-app.use("/task", taskRouter)
-app.use("/player", playerRouter)
+app.use("/tasks", taskRouter)
+app.use("/players", playerRouter)
 
 const PORT = process.env.PORT || 3000
 
