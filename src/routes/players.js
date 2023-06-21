@@ -44,7 +44,7 @@ playerRouter.get("/", (request, response) => {
  *        description: Missing required field
  * */
 playerRouter.post("/", (request, response) => {
-    const { username, level, all_time_score, group_id } = request.body
+    const { username, level, score, group_id } = request.body
     const player = new Players({
         name,
         createdby,

@@ -77,7 +77,7 @@ const options = {
 							type: 'Number',
 							example: '1',
 						},
-						all_time_score: {
+						score: {
 							type: 'Number',
 							example: '50',
 						},
