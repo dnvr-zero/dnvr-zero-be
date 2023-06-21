@@ -15,10 +15,8 @@ app.use(cors({
 }));
 const taskRouter = require('./routes/tasks');
 const playerRouter = require('./routes/players');
-
-// app.use(express.json());
-app.use('/task', taskRouter);
-app.use('/player', playerRouter);
+app.use("/tasks", taskRouter);
+app.use("/players", playerRouter);
 const PORT = 8000;
 const options = {
   swaggerDefinition: {
@@ -74,7 +72,7 @@ const options = {
               type: 'Number',
               example: '1'
             },
-            all_time_score: {
+            score: {
               type: 'Number',
               example: '50'
             },

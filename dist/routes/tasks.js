@@ -8,10 +8,10 @@ const Tasks = require("../models/Tasks");
 // Routes
 /**
  * @swagger
- * /task:
+ * /tasks:
  *  get:
  *    tags:
- *      - [task]
+ *      - [tasks]
  *    summary: Get all the tasks
  *    description: Use this endpoint to request all tasks and return an array of JSON objects; No params required
  *    responses:
@@ -26,10 +26,10 @@ router.get("/", (request, response) => {
 
 /**
  * @swagger
- * /task:
+ * /tasks:
  *  post:
  *    tags:
- *      - [task]
+ *      - [tasks]
  *    summary: Add a task to the database
  *    description: Use this endpoint to create a new task; be sure to pass at minimum the name of the new task as JSON in the body of the request. You can also pass description, points, and createdby. All arguments should be strings. Don't forget to use double quotes when writing JSON.
  *    requestBody:
@@ -61,12 +61,12 @@ router.post("/", (request, response) => {
 
 /**
  * @swagger
- * /task/{taskId}:
+ * /tasks/{taskId}:
  *  get:
  *    tags:
- *      - [task/:id]
+ *      - [tasks/:id]
  *    summary: request a single task
- *    description: If you have a task id,  add it to the endpoint by clicking `Try it out` and adding it in place of `taskId` below; If you don't have a taskId, try the `GET /task` endpoint above, and pull a taskId from one of the objects in the response
+ *    description: If you have a task id,  add it to the endpoint by clicking `Try it out` and adding it in place of `taskId` below; If you don't have a taskId, try the `GET /tasks` endpoint above, and pull a taskId from one of the objects in the response
  *    responses:
  *      '200':
  *        description: A successful response
@@ -83,10 +83,10 @@ router.get("/:id", (request, response) => {
 
 /**
  * @swagger
- * /task/{taskId}:
+ * /tasks/{taskId}:
  *  patch:
  *    tags:
- *      - [task/:id]
+ *      - [tasks/:id]
  *    summary: Update one of the fields for a specific task
  *    description: If something isn't right in one of the fields of a task, click `Try it out` below and replace `taskId` with the actual id of a task; Be sure to pass in any information that needs to be updated as JSON in the body of the request; Don't forget to use double quotes when writing JSON
  *    requestBody:
@@ -116,7 +116,7 @@ router.patch("/:id", (request, response) => {
 
 /**
  * @swagger
- * /task/{taskId}:
+ * /tasks/{taskId}:
  *  delete:
  *    tags:
  *      - [task/:id]

@@ -9,7 +9,7 @@ const PlayerSchema = mongoose.Schema({
         type: Number,
         required: false,
     },
-    all_time_score: {
+    score: {
         type: Number,
         required: false,
     },

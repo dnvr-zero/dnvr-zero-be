@@ -6,10 +6,10 @@ const Players = require("../models/Players")
 // Routes
 /**
  * @swagger
- * /player:
+ * /players:
  *  get:
  *    tags:
- *      - [player]
+ *      - [players]
  *    summary: Get all the players
  *    description: Use this endpoint to request all players and return an array of JSON objects; No params required
  *    responses:
@@ -26,10 +26,10 @@ playerRouter.get("/", (request, response) => {
 
 /**
  * @swagger
- * /player:
+ * /players:
  *  post:
  *    tags:
- *      - [player]
+ *      - [players]
  *    summary: Add a player to the database
  *    description: Use this endpoint to create a new player; be sure to pass at minimum the name of the new player as JSON in the body of the request. You can also pass description, points, and createdby. All arguments should be strings. Don't forget to use double quotes when writing JSON.
  *    requestBody:
@@ -44,7 +44,7 @@ playerRouter.get("/", (request, response) => {
  *        description: Missing required field
  * */
 playerRouter.post("/", (request, response) => {
-    const { username, level, all_time_score, group_id } = request.body
+    const { username, level, score, group_id } = request.body
     const player = new Players({
         name,
         createdby,
