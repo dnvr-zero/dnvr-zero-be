@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
 	cors({
-		origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:8000'],
+		origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000'],
 	})
 );
 
