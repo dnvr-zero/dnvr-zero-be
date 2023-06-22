@@ -6,6 +6,7 @@ const cors = require('cors');
 require('dotenv/config');
 
 const app = express();
+
 app.use(
 	cors({
 		origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:8000'],
@@ -125,6 +126,7 @@ mongoose
 	.then(() => console.log('DB Connected '))
 	.catch((err) => console.log('error'));
 
+// server up
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
 
 module.exports = app;
