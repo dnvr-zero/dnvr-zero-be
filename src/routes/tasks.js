@@ -20,7 +20,7 @@ const Tasks = require("../models/Tasks")
  * */
 router.get("/", (request, response) => {
     Tasks.find()
-        .then((resp) => response.status(200).json(resp))
+        .then((resp) => response.status(200).json({ data: resp }))
         .catch((err) => response.status(400).json("Request Failed"))
 })
 
