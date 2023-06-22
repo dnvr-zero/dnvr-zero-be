@@ -1,8 +1,10 @@
 "use strict";
 
-// import mongoose from 'mongoose';
-const mongoose = require('mongoose');
-const TaskSchema = mongoose.Schema({
+var _mongoose = _interopRequireDefault(require("mongoose"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+// const mongoose = require("mongoose")
+
+const TaskSchema = _mongoose.default.Schema({
   name: {
     type: String,
     required: true
@@ -20,4 +22,4 @@ const TaskSchema = mongoose.Schema({
     required: false
   }
 });
-module.exports = mongoose.model("Tasks", TaskSchema);
+module.exports = _mongoose.default.model("Tasks", TaskSchema);

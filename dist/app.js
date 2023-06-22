@@ -11,12 +11,15 @@ const cors = require('cors');
 require('dotenv/config');
 const app = (0, _express.default)();
 app.use(cors({
-  origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000']
+  origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:8000']
 }));
 const taskRouter = require('./routes/tasks');
 const playerRouter = require('./routes/players');
+const groupRouter = require('./routes/groups');
+app.use(_express.default.json());
 app.use("/tasks", taskRouter);
 app.use("/players", playerRouter);
+app.use("/groups", groupRouter);
 const PORT = 8000;
 const options = {
   swaggerDefinition: {
@@ -112,5 +115,7 @@ _mongoose.default.connect(process.env.DB_CONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('DB Connected ')).catch(err => console.log('error'));
+
+// server up
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
 module.exports = app;

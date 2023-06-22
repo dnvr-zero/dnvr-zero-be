@@ -15,10 +15,12 @@ app.use(
 
 const taskRouter = require('./routes/tasks');
 const playerRouter = require('./routes/players');
+const groupRouter = require('./routes/groups');
 
 app.use(express.json())
 app.use("/tasks", taskRouter)
 app.use("/players", playerRouter)
+app.use("/groups", groupRouter)
 
 const PORT = 8000;
 
