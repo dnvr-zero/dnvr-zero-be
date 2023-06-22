@@ -119,7 +119,7 @@ router.patch("/:id", (request, response) => {
  * /tasks/{taskId}:
  *  delete:
  *    tags:
- *      - [task/:id]
+ *      - [tasks/:id]
  *    summary: Use this endpoint to delete a single task
  *    description: if you have a task id, then include it in the http request, and it will be removed from the database; no params required
  *    responses:

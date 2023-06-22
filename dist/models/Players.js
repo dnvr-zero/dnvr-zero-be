@@ -3,23 +3,24 @@
 const mongoose = require("mongoose");
 const PlayerSchema = mongoose.Schema({
   username: {
-    type: Number,
+    type: String,
     required: true
   },
   level: {
-    type: Number,
+    type: String,
     required: false
   },
   score: {
-    type: Number,
+    type: String,
     required: false
   },
   email: {
-    type: Number,
-    required: true
+    type: String,
+    required: false,
+    default: 'email@email.com'
   },
   group_id: {
-    type: Number,
+    type: String,
     required: false
   }
 });

@@ -9,16 +9,18 @@ const app = express();
 
 app.use(
 	cors({
-		origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:8000'],
+		origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000'],
 	})
 );
 
 const taskRouter = require('./routes/tasks');
 const playerRouter = require('./routes/players');
+const groupRouter = require('./routes/groups');
 
 app.use(express.json())
 app.use("/tasks", taskRouter)
 app.use("/players", playerRouter)
+app.use("/groups", groupRouter)
 
 const PORT = 8000;
 
