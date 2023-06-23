@@ -45,3 +45,4 @@ groupRouter.get("/", (request, response) => {
 groupRouter.get("/:id", (request, response) => {
   Groups.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
+module.exports = groupRouter;

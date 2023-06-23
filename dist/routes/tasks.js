@@ -21,7 +21,9 @@ const Tasks = require("../models/Tasks");
  *        description: Request Failed
  * */
 router.get("/", (request, response) => {
-  Tasks.find().then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  Tasks.find().then(resp => response.status(200).json({
+    data: resp
+  })).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
