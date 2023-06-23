@@ -11,7 +11,7 @@ const cors = require('cors');
 require('dotenv/config');
 const app = (0, _express.default)();
 app.use(cors({
-  origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:8000']
+  origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000']
 }));
 const taskRouter = require('./routes/tasks');
 const playerRouter = require('./routes/players');
