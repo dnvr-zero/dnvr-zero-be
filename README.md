@@ -71,6 +71,7 @@
     </li>
     <li><a href="#wireframes">Wireframes</a></li>
     <li><a href="#schema">Schema</a></li>
+    <li><a href="#json-contracts">JSON contracts</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -88,7 +89,7 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 
 <details>
 <summary>Click for more</summary>
-<p>We're (re)creating (or re-vitalizing) a site that encourages non-consumer leisure activities, creativity and exploring the habitat in which you find yourself. Create a "player", find a task to complete, and then sign up for that task. Submit proof once your done and gain sweet, sweet fake internet points to level up.</p>
+<p>We're (re)creating (or re-vitalizing) a site that encourages non-consumer leisure activities, creativity and exploring the habitat in which you find yourself. Create a "player", find a task to complete, and then sign up for that task. Submit proof once you're done and gain sweet, sweet fake internet points to level up.</p>
 
 <p>If you'd rather invent tasks for people to complete, do that too! Date ideas? Solo dates? Artist's date? Looking for a cure for your boredom? Want to meet people and explore your city? Want to do something fun with a loved one? Want to break the monotony of the same ol' routine? What are you waiting for?</p>
 
@@ -158,6 +159,22 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 
 <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/dnvr-zero-schema.jpeg" alt="Logo">
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- JSON contracts -->
+
+## JSON contracts
+
+The backend repository is using Swagger to help document the endpoints.
+
+Once the backend repo has been forked, cloned and packages have been installed, run the following command to start the development environment:
+
+```
+> npm run start:dev
+```
+
+now navigate to `localhost:8000/apidocs` and you'll see the Swagger UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
