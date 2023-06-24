@@ -6,7 +6,7 @@ const TaskSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    createdby: {
+    createdBy: {
         type: String,
         require: false,
     },
