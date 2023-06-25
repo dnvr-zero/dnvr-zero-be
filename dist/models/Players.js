@@ -17,11 +17,14 @@ const PlayerSchema = mongoose.Schema({
   email: {
     type: String,
     required: false,
-    default: 'email@email.com'
+    default: "email@email.com"
   },
   groupID: {
     type: String,
     required: false
   }
+}, {
+  timestamps: true,
+  versionKey: false
 });
 module.exports = mongoose.model("Players", PlayerSchema);
