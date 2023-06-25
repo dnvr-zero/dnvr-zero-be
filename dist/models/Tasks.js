@@ -9,7 +9,7 @@ const TaskSchema = _mongoose.default.Schema({
     type: String,
     required: true
   },
-  createdby: {
+  createdBy: {
     type: String,
     require: false
   },
@@ -21,5 +21,7 @@ const TaskSchema = _mongoose.default.Schema({
     type: String,
     required: false
   }
+}, {
+  timestamps: true
 });
 module.exports = _mongoose.default.model("Tasks", TaskSchema);
