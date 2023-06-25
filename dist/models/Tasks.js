@@ -22,6 +22,8 @@ const TaskSchema = _mongoose.default.Schema({
     required: false
   }
 }, {
-  timestamps: true
+  // options that apply to all records
+  timestamps: true,
+  versionKey: false
 });
 module.exports = _mongoose.default.model("Tasks", TaskSchema);

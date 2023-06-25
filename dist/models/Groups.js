@@ -10,5 +10,8 @@ const GroupSchema = mongoose.Schema({
     type: String,
     required: false
   }
+}, {
+  timestamps: true,
+  versionKey: false
 });
 module.exports = mongoose.model("Groups", GroupSchema);
