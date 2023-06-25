@@ -18,7 +18,7 @@ const PlayerSchema = mongoose.Schema({
         required: false,
         default: 'email@email.com'
     },
-    groupId: {
+    groupID: {
         type: String,
         required: false,
     },
