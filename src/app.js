@@ -63,7 +63,7 @@ const options = {
 							type: 'string',
 							example: '50 points',
 						},
-						createdby: {
+						createdBy: {
 							type: 'string',
 							example: 'Anon Player',
 						},
@@ -89,7 +89,7 @@ const options = {
 							type: 'string',
 							example: 'email@email.com',
 						},
-						group_id: {
+						groupID: {
 							type: 'Number',
 							example: '1',
 						},
