@@ -19,12 +19,6 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -37,7 +31,13 @@
     <p>The fun comes from the users, and the tasks they invent, and how tasks are interpreted and completed</p>
     <p> None of this really means anything, so why not have some fun while doing it?</p>
     <br />
+    <figure>
   <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/dnvrzero.jpg" alt="Logo">
+  <figcaption>
+    <span class="caption"> Thanks <a href="https://unsplash.com/license">Unsplash!</a></span> |
+    <i class=""> Photo by <a href="https://unsplash.com/@planner1963">Pietr Van de Sande</a> </i>
+  </figcaption>
+  </figure>
     <br />
     <a href="http://sf0.org/"><strong>Visit the original website that is the inspiration for this project »</strong></a>
     <br />
@@ -46,9 +46,9 @@
     ·
     <a href="https://github.com/dnvr-zero/dnvr-zero-fe">View Frontend source code</a>
     .
-    <a href="https://github.com/marchandmd/dnvr-zero/dnvr-zero-be/issues">Report Bug</a>
+    <a href="https://github.com/dnvr-zero/dnvr-zero-be/issues">Report Bug</a>
     ·
-    <a href="https://github.com/marchandmd/dnvr-zero/dnvr-zero-be/issues">Request Feature</a>
+    <a href="https://github.com/dnvr-zero/dnvr-zero-be/issues">Request Feature</a>
   </p>
 </div>
 
@@ -71,11 +71,12 @@
     </li>
     <li><a href="#wireframes">Wireframes</a></li>
     <li><a href="#schema">Schema</a></li>
+    <li><a href="#json-contracts">JSON contracts</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contributors">Contributors</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 
@@ -86,6 +87,15 @@
 
 We're alumni of the Turing School of Software and Design, and this project is part of the New Grad Services program, which provides opportunity for recent grads to continue to practice existing skills, gain new tech stack, and build community around an open source project.
 
+<details>
+<summary>Click for more</summary>
+<p>We're (re)creating (or re-vitalizing) a site that encourages non-consumer leisure activities, creativity and exploring the habitat in which you find yourself. Create a "player", find a task to complete, and then sign up for that task. Submit proof once you're done and gain sweet, sweet fake internet points to level up.</p>
+
+<p>If you'd rather invent tasks for people to complete, do that too! Date ideas? Solo dates? Artist's date? Looking for a cure for your boredom? Want to meet people and explore your city? Want to do something fun with a loved one? Want to break the monotony of the same ol' routine? What are you waiting for?</p>
+
+<p>Collaborate with your friends! Collaborate with strangers! Or just complete these on your own.
+</p>
+</details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,6 +105,8 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 -   [![Express][Express]][express-url]
 -   [![React][react]][react-url]
 -   [![Node][Node]][node-url]
+-   [![TypeScript][TypeScript]][typescript-url]
+-   [![Bootstrap][Bootstrap]][bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -112,7 +124,11 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 - fork the repository
 - clone your fork onto your local machine
 - cd into the new repo
-- install the necessary packages
+- install the necessary packages with
+
+```
+> npm install
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -146,12 +162,27 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- JSON contracts -->
+
+## JSON contracts
+
+The backend repository is using Swagger to help document the endpoints.
+
+Once the backend repo has been forked, cloned and packages have been installed, run the following command to start the development environment:
+
+```
+> npm run start:dev
+```
+
+now navigate to `localhost:8000/apidocs` and you'll see the Swagger UI
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- USAGE EXAMPLES -->
 
 ## Usage
 
-- TBD
-
+  This project will be live; Locating the live site will be listed here, when available
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -159,11 +190,8 @@ We're alumni of the Turing School of Software and Design, and this project is pa
 
 ## Roadmap
 
-- [ ] Update README
+   This project is managed via the organization project board, which can be found [here](https://github.com/orgs/dnvr-zero/projects/2)
 
-See the [backend open issues](https://github.com/dnvr-zero/dnvr-zero-be/issues) for a full list of proposed features (and known issues).
-
-See the [frontend open issues](https://github.com/dnvr-zero/dnvr-zero-fe/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -192,13 +220,53 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTACT -->
+<!-- Contributors -->
 
-## Contact
+## Contributors
 
-Michael Marchand - MichaelDavidMarchand@gmail.com
+### FRONTEND
+<table>
+  <tr>
+    <td><img src="https://avatars.githubusercontent.com/u/97558758?s=150&v=4"></td>
+    <td><img src="https://avatars.githubusercontent.com/u/28677929?s=150&v=4"></td>
+  </tr>
+  <tr>
+    <td>Jordan Farelli</td>
+    <td>Ali Nix</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/github-logo.png" alt="github"> <a href="https://github.com/jfarelli">GitHub</a><br>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/linkedin-logo.png" alt="linkedin"> <a href="https://www.linkedin.com/in/jordan-farelli/">LinkedIn</a>
+    </td>
+    <td>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/github-logo.png" alt="github"> <a href="https://github.com/alinix1">GitHub</a><br>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/linkedin-logo.png" alt="linkedin"> <a href="https://www.linkedin.com/in/ali-nix-38b9b9126/">LinkedIn</a>
+    </td>
+  </tr>
+</table>
 
-Project Link: [https://github.com/dnvr-zero](https://github.com/dnvr-zero)
+### BACKEND
+<table>
+  <tr>
+    <td><img src="https://avatars.githubusercontent.com/u/110377741?s=150&v=4"></td>
+    <td><img src="https://avatars.githubusercontent.com/u/35391349?s=150&v=4"></td>
+  </tr>
+  <tr>
+    <td>Mostafa Sakr</td>
+    <td>Michael Marchand</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/github-logo.png" alt="github"> <a href="https://github.com/msakr21">GitHub</a><br>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/linkedin-logo.png" alt="linkedin"> <a href="https://www.linkedin.com/in/mostafasakr16/">LinkedIn</a>
+    </td>
+    <td>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/github-logo.png" alt="github"> <a href="https://github.com/marchandMD">GitHub</a><br>
+      <img src="https://github.com/dnvr-zero/dnvr-zero-be/raw/main/public/linkedin-logo.png" alt="linkedin"> <a href="https://www.linkedin.com/in/mmarchand1/">LinkedIn</a>
+    </td>
+  </tr>
+</table>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -211,6 +279,8 @@ Some great tools and/or people who helped to make this project what it is!
 -   [Choose an Open Source License](https://choosealicense.com)
 -   [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 -   [Img Shields](https://shields.io)
+-   [Unsplash](https://unsplash.com/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -230,7 +300,7 @@ Some great tools and/or people who helped to make this project what it is!
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/mmarchand1/
 [product-screenshot]: images/screenshot.png
-[bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap]: https://img.shields.io/badge/Bootstrap-v5.3.0-success
 [bootstrap-url]: https://getbootstrap.com
 [ruby.com]: https://img.shields.io/badge/ruby-v2.7.4-red
 [ruby-url]: https://ruby-doc.org/core-2.7.2/
@@ -240,7 +310,9 @@ Some great tools and/or people who helped to make this project what it is!
 [mongo-url]: https://www.mongodb.com/
 [Express]: https://img.shields.io/badge/Express-v4.18-success
 [express-url]: https://expressjs.com/
-[React]: https://img.shields.io/badge/React-v1.0-success
+[React]: https://img.shields.io/badge/React-v18.2-success
 [react-url]: https://react.dev/
 [Node]: https://img.shields.io/badge/Node-v19.7.0-success
 [node-url]: https://nodejs.dev/en/
+[TypeScript]: https://img.shields.io/badge/TypeScript-v4.9.5-success
+[typescript-url]: https://react.dev/
