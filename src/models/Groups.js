@@ -13,7 +13,7 @@ const GroupSchema = mongoose.Schema(
     },
     {
         timestamps: true,
-        versionKey: false,
+        versionKey: false
     }
 )
 
