@@ -1,12 +1,12 @@
 const express = require('express');
-
 const axios = require('axios');
+require('dotenv/config');
 
-// const clientID = process.env.CLIENT_ID;
-// const clientSecret = process.env.CLIENT_SECRET;
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
 
-const clientID = 'c820624d21ec78915700';
-const clientSecret = 'eaae81f74c0f049528e4dc7367abb26f62c62900';
+// const clientID = 'c820624d21ec78915700';
+// const clientSecret = 'eaae81f74c0f049528e4dc7367abb26f62c62900';
 const app = express();
 
 app.get('/oauth/redirect', (req, res) => {
