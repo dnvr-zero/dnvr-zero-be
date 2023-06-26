@@ -20,11 +20,13 @@ app.get('/oauth/redirect', (req, res) => {
 	})
 		.then((response) => {
 			const accessToken = response.data.access_token;
-			res.redirect(`http://localhost:3000/player-profile?access_token=${accessToken}`);
+			res.redirect(
+				`http://localhost:3000/player-profile?access_token=${accessToken}`
+			);
 		})
 		.catch((error) => {
 			console.error('Error exchanging code for access token:', error);
-			res.redirect('/'); // Redirect to the login page or error page
+			res.redirect('/');
 		});
 });
 
