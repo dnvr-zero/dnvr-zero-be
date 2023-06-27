@@ -2,7 +2,7 @@
 
 var _express = _interopRequireWildcard(require("express"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
-var _swaggerJsdoc = _interopRequireDefault(require("swagger-jsdoc"));
+var _swaggerDocs = _interopRequireDefault(require("./src/swagger/swaggerDocs.js"));
 var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -22,88 +22,10 @@ app.use("/tasks", taskRouter);
 app.use("/players", playerRouter);
 app.use("/groups", groupRouter);
 const PORT = 8000;
-const options = {
-  swaggerDefinition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'dnvr-zero-be',
-      summary: 'the backend endpoints for the SOA of dnvr-zero',
-      description: 'documentation for the available endpoints to retrieve, update, delete data from dnvr-zero-be',
-      version: '3.0.0',
-      contact: {
-        name: 'Michael Marchand',
-        email: 'MichaelDavidMarchand@gmail.com'
-      },
-      servers: ['http://localhost:8000']
-    },
-    servers: [{
-      url: 'http://localhost:8000',
-      description: 'Development Server'
-    }],
-    components: {
-      schemas: {
-        TaskItem: {
-          type: 'object',
-          required: ['name'],
-          properties: {
-            name: {
-              type: 'string',
-              example: 'name of task'
-            },
-            description: {
-              type: 'string',
-              example: 'a really cool description of the task'
-            },
-            points: {
-              type: 'string',
-              example: '50 points'
-            },
-            createdBy: {
-              type: 'string',
-              example: 'Anon Player'
-            }
-          }
-        },
-        PlayerItem: {
-          type: 'object',
-          required: ['username'],
-          properties: {
-            username: {
-              type: 'string',
-              example: 'userName'
-            },
-            level: {
-              type: 'Number',
-              example: '1'
-            },
-            score: {
-              type: 'Number',
-              example: '50'
-            },
-            email: {
-              type: 'string',
-              example: 'email@email.com'
-            },
-            groupID: {
-              type: 'Number',
-              example: '1'
-            }
-          }
-        }
-      }
-    },
-    externalDocs: {
-      description: 'To see additional documentation for the project, click here',
-      url: 'https://github.com/dnvr-zero'
-    }
-  },
-  apis: ['src/routes/*.js']
-};
-const swaggerDocs = (0, _swaggerJsdoc.default)(options);
-app.use('/apidocs', _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup(swaggerDocs));
+app.use('/apidocs', _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup(_swaggerDocs.default));
 app.get('/docs.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerDocs);
+  res.send(_swaggerDocs.default);
 });
 
 // Routes
