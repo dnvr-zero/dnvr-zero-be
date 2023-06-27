@@ -2,8 +2,9 @@
 
 var _express = _interopRequireWildcard(require("express"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
-var _swaggerJsdoc = _interopRequireDefault(require("swagger-jsdoc"));
+var _swaggerDocs = _interopRequireDefault(require("./src/swagger/swaggerDocs.js"));
 var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
+var _axios = _interopRequireDefault(require("axios"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -21,93 +22,47 @@ app.use("/tasks", taskRouter);
 app.use("/players", playerRouter);
 app.use("/groups", groupRouter);
 const PORT = 8000;
-const options = {
-  swaggerDefinition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'dnvr-zero-be',
-      summary: 'the backend endpoints for the SOA of dnvr-zero',
-      description: 'documentation for the available endpoints to retrieve, update, delete data from dnvr-zero-be',
-      version: '3.0.0',
-      contact: {
-        name: 'Michael Marchand',
-        email: 'MichaelDavidMarchand@gmail.com'
-      },
-      servers: ['http://localhost:8000']
-    },
-    servers: [{
-      url: 'http://localhost:8000',
-      description: 'Development Server'
-    }],
-    components: {
-      schemas: {
-        TaskItem: {
-          type: 'object',
-          required: ['name'],
-          properties: {
-            name: {
-              type: 'string',
-              example: 'name of task'
-            },
-            description: {
-              type: 'string',
-              example: 'a really cool description of the task'
-            },
-            points: {
-              type: 'string',
-              example: '50 points'
-            },
-            createdBy: {
-              type: 'string',
-              example: 'Anon Player'
-            }
-          }
-        },
-        PlayerItem: {
-          type: 'object',
-          required: ['username'],
-          properties: {
-            username: {
-              type: 'string',
-              example: 'userName'
-            },
-            level: {
-              type: 'Number',
-              example: '1'
-            },
-            score: {
-              type: 'Number',
-              example: '50'
-            },
-            email: {
-              type: 'string',
-              example: 'email@email.com'
-            },
-            groupID: {
-              type: 'Number',
-              example: '1'
-            }
-          }
-        }
-      }
-    },
-    externalDocs: {
-      description: 'To see additional documentation for the project, click here',
-      url: 'https://github.com/dnvr-zero'
-    }
-  },
-  apis: ['src/routes/*.js']
-};
-const swaggerDocs = (0, _swaggerJsdoc.default)(options);
-app.use('/apidocs', _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup(swaggerDocs));
+app.use('/apidocs', _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup(_swaggerDocs.default));
 app.get('/docs.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerDocs);
+  res.send(_swaggerDocs.default);
 });
 
 // Routes
 app.get('/', async (request, response) => {
   response.send('The node.js app works');
+});
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+app.get('/auth', (req, res) => {
+  const params = {
+    scope: "read:user",
+    client_id: clientID
+  };
+  const urlEncodedParams = new URLSearchParams(params).toString();
+  res.redirect(`https://github.com/login/oauth/authorize?${urlEncodedParams}`);
+});
+app.get("/oauth/redirect", (req, res) => {
+  const {
+    code
+  } = req.query;
+  const body = {
+    client_id: clientID,
+    client_secret: clientSecret,
+    code
+  };
+  let accessToken;
+  const options = {
+    headers: {
+      accept: "application/json"
+    }
+  };
+  _axios.default.post("https://github.com/login/oauth/access_token", body, options).then(response => response.data.access_token).then(token => {
+    accessToken = token;
+    res.redirect(`http://localhost:3000/player-profile?token=${token}`);
+  }).catch(err => res.status(500).json({
+    err: err.message
+  }));
 });
 
 // Database connection

@@ -1,134 +1,85 @@
 import express, { json } from 'express';
 import mongoose from 'mongoose';
-import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerDocs from '../src/swagger/swaggerdocs'
 import swaggerUi from 'swagger-ui-express';
-const cors = require('cors');
-require('dotenv/config');
+import axios from 'axios';
+import cors from 'cors';
+import 'dotenv/config';
+import taskRouter from './routes/tasks';
+import playerRouter from './routes/players';
+import groupRouter from './routes/groups';
 
 const app = express();
 
 app.use(
-	cors({
-		origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000'],
-	})
+  cors({
+    origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000'],
+  })
 );
-
-const taskRouter = require('./routes/tasks');
-const playerRouter = require('./routes/players');
-const groupRouter = require('./routes/groups');
 
 app.use(express.json())
 app.use("/tasks", taskRouter)
 app.use("/players", playerRouter)
 app.use("/groups", groupRouter)
 
-const PORT = 8000;
-
-const options = {
-	swaggerDefinition: {
-		openapi: '3.0.0',
-		info: {
-			title: 'dnvr-zero-be',
-			summary: 'the backend endpoints for the SOA of dnvr-zero',
-			description:
-				'documentation for the available endpoints to retrieve, update, delete data from dnvr-zero-be',
-			version: '3.0.0',
-			contact: {
-				name: 'Michael Marchand',
-				email: 'MichaelDavidMarchand@gmail.com',
-			},
-			servers: ['http://localhost:8000'],
-		},
-		servers: [
-			{
-				url: 'http://localhost:8000',
-				description: 'Development Server',
-			},
-		],
-		components: {
-			schemas: {
-				TaskItem: {
-					type: 'object',
-					required: ['name'],
-					properties: {
-						name: {
-							type: 'string',
-							example: 'name of task',
-						},
-						description: {
-							type: 'string',
-							example: 'a really cool description of the task',
-						},
-						points: {
-							type: 'string',
-							example: '50 points',
-						},
-						createdBy: {
-							type: 'string',
-							example: 'Anon Player',
-						},
-					},
-				},
-				PlayerItem: {
-					type: 'object',
-					required: ['username'],
-					properties: {
-						username: {
-							type: 'string',
-							example: 'userName',
-						},
-						level: {
-							type: 'Number',
-							example: '1',
-						},
-						score: {
-							type: 'Number',
-							example: '50',
-						},
-						email: {
-							type: 'string',
-							example: 'email@email.com',
-						},
-						groupID: {
-							type: 'Number',
-							example: '1',
-						},
-					},
-				},
-			},
-		},
-		externalDocs: {
-			description:
-				'To see additional documentation for the project, click here',
-			url: 'https://github.com/dnvr-zero',
-		},
-	},
-	apis: ['src/routes/*.js'],
-};
-
-const swaggerDocs = swaggerJsdoc(options);
-app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocs()));
 
 app.get('/docs.json', (req, res) => {
-	res.setHeader('Content-Type', 'application/json');
-	res.send(swaggerDocs);
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerDocs);
 });
 
 // Routes
 app.get('/', async (request, response) => {
-	response.send('The node.js app works');
+  response.send('The node.js app works');
 });
+
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+
+app.get('/auth', (req, res) => {
+
+  const params = {
+    scope: "read:user",
+    client_id: clientID,
+  };
+  const urlEncodedParams = new URLSearchParams(params).toString();
+  
+  res.redirect(`https://github.com/login/oauth/authorize?${urlEncodedParams}`)
+  })
+
+  app.get("/oauth/redirect", (req, res) => {
+    const { code } = req.query;
+   
+    const body = {
+      client_id: clientID,
+      client_secret: clientSecret,
+      code,
+    };
+   
+    let accessToken;
+    const options = { headers: { accept: "application/json" } };
+   
+    axios
+      .post("https://github.com/login/oauth/access_token", body, options)
+      .then((response) => response.data.access_token)
+      .then((token) => {
+        accessToken = token;
+        res.redirect(`http://localhost:3000/player-profile?token=${token}`);
+      })
+      .catch((err) => res.status(500).json({ err: err.message }));
+  });
 
 // Database connection
 mongoose
-	.connect(process.env.DB_CONNECTION, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
-	.then(() => console.log('DB Connected '))
-	.catch((err) => console.log('error'));
+  .connect(process.env.DB_CONNECTION, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('DB Connected '))
+  .catch((err) => console.log('error'));
 
 // server up
-app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
 
 module.exports = app;
