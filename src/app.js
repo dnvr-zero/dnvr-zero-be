@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 import mongoose from 'mongoose';
-import swaggerDocs from '../src/swagger/swaggerdocs'
+import swaggerDocs from './swagger/swaggerdocs.cjs'
 import swaggerUi from 'swagger-ui-express';
 import axios from 'axios';
 import cors from 'cors';

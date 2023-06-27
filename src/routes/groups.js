@@ -1,7 +1,7 @@
 import express from "express"
 
 const groupRouter = express.Router()
-const Groups = require('../models/Groups')
+const Groups = require('../models/Groups.js')
 
 // Routes
 /**
