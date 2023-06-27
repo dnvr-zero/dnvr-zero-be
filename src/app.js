@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import mongoose from 'mongoose';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import axios from 'axios';
 const cors = require('cors');
 require('dotenv/config');
 
@@ -118,6 +119,42 @@ app.get('/docs.json', (req, res) => {
 app.get('/', async (request, response) => {
 	response.send('The node.js app works');
 });
+
+const clientID = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+
+app.get('/auth', (req, res) => {
+
+	const params = {
+    scope: "read:user",
+    client_id: clientID,
+  };
+	const urlEncodedParams = new URLSearchParams(params).toString();
+	
+	res.redirect(`https://github.com/login/oauth/authorize?${urlEncodedParams}`)
+	})
+
+	app.get("/oauth/redirect", (req, res) => {
+		const { code } = req.query;
+	 
+		const body = {
+			client_id: clientID,
+			client_secret: clientSecret,
+			code,
+		};
+	 
+		let accessToken;
+		const options = { headers: { accept: "application/json" } };
+	 
+		axios
+			.post("https://github.com/login/oauth/access_token", body, options)
+			.then((response) => response.data.access_token)
+			.then((token) => {
+				accessToken = token;
+				res.redirect(`http://localhost:3000/player-profile?token=${token}`);
+			})
+			.catch((err) => res.status(500).json({ err: err.message }));
+	});
 
 // Database connection
 mongoose
