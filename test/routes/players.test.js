@@ -12,7 +12,7 @@ app.use("/players", router);
 
 // before all the route tests, connect to the database
 beforeAll(async () => {
-    await mongoose.connect(process.env.DB_CONNECTION, {
+    await mongoose.connect(process.env.TEST_DB_CONNECTION, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -49,6 +49,7 @@ describe("Test the players endpoint(s)", () => {
     test("GET /players", async () => {
         const response = await request(app).get("/players");
         expect(response.statusCode).toBe(200);
+        expect(response.body.length >= 0).toBe(true);
     });
 
     // test for successful response to a POST request to /players
@@ -60,15 +61,27 @@ describe("Test the players endpoint(s)", () => {
         const response = await request(app).post("/players").send(testFields);
         expect(response.statusCode).toBe(201);
 
+        // confirm a player document was created by checking id
+        expect(mongoose.Types.ObjectId.isValid(response.body._id)).toBe(true);
+
+        // confirm the player created used the test fields
+        expect(response.body.username).toBe(testFields.username);
+
         // delete the temp document that was created for this test
         await Model.deleteOne({ _id: response.body._id });
     });
 
     // test for successful response to a GET request to /players/id
     test("GET /players/id", async () => {
+        const requestedID = testPlayer._id.toString();
+
         // send request to get the test player that was just created
-        const response = await request(app).get(`/players/${testPlayer._id}`);
+        const response = await request(app).get(`/players/${requestedID}`);
         expect(response.statusCode).toBe(200);
+
+        const receivedID = response.body._id.toString();
+        // confirm the player document received in response is the document requested
+        expect(receivedID).toBe(requestedID);
     });
 
     // test for successful response to a PATCH request to /players/id
@@ -80,14 +93,22 @@ describe("Test the players endpoint(s)", () => {
             .patch(`/players/${testPlayer.id}`)
             .send(updatePlayer);
         expect(response.statusCode).toBe(200);
+
+        // confirm the request to update one document was executed
+        expect(response.body.acknowledged).toBe(true);
+        expect(response.body.modifiedCount).toBe(1);
     });
 
     // test for successful response to a DELETE request to /players/id
     test("DELETE /players/id", async () => {
+        const requestedID = testPlayer._id.toString();
+
         // send request to delete the test player
-        const response = await request(app).delete(
-            `/players/${testPlayer._id}`
-        );
+        const response = await request(app).delete(`/players/${requestedID}`);
         expect(response.statusCode).toBe(200);
+
+        // confirm the request to delete one document was executed
+        expect(response.body.acknowledged).toBe(true);
+        expect(response.body.deletedCount).toBe(1);
     });
 });
