@@ -1,7 +1,7 @@
-import express from "express"
+import express from "express";
 
-const playerRouter = express.Router()
-const Players = require("../models/Players")
+const playerRouter = express.Router();
+const Players = require("../models/Players");
 
 // Routes
 /**
@@ -19,10 +19,10 @@ const Players = require("../models/Players")
  *        description: Request Failed
  * */
 playerRouter.get("/", (request, response) => {
-    Players.find()
-        .then((resp) => response.status(200).json(resp))
-        .catch((err) => response.status(400).json("Request Failed"))
-})
+  Players.find()
+    .then((resp) => response.status(200).json(resp))
+    .catch((err) => response.status(400).json("Request Failed"));
+});
 
 /**
  * @swagger
@@ -44,18 +44,19 @@ playerRouter.get("/", (request, response) => {
  *        description: Missing required field
  * */
 playerRouter.post("/", (request, response) => {
-    const { username, level, score, group_id, email } = request.body
-    const player = new Players({
-        username,
-        level,
-        score,
-        email,
-        group_id
-    })
-    player.save()
-        .then((resp) => response.status(201).json(resp))
-        .catch((err) => response.status(400).json("Request Failed"))
-})
+  const { username, level, score, group_id, email } = request.body;
+  const player = new Players({
+    username,
+    level,
+    score,
+    email,
+    group_id,
+  });
+  player
+    .save()
+    .then((resp) => response.status(201).json(resp))
+    .catch((err) => response.status(400).json("Request Failed"));
+});
 
 /**
  * @swagger
@@ -76,10 +77,10 @@ playerRouter.post("/", (request, response) => {
  *        type: string
  * */
 playerRouter.get("/:id", (request, response) => {
-    Players.findById(request.params.id)
-        .then((resp) => response.status(200).json(resp))
-        .catch((err) => response.status(400).json("Request Failed"))
-})
+  Players.findById(request.params.id)
+    .then((resp) => response.status(200).json(resp))
+    .catch((err) => response.status(400).json("Request Failed"));
+});
 
 /**
  * @swagger
@@ -107,10 +108,10 @@ playerRouter.get("/:id", (request, response) => {
  *        type: string
  * */
 playerRouter.patch("/:id", (request, response) => {
-    Players.updateOne({ _id: request.params.id }, { $set: request.body })
-        .then((resp) => response.status(200).json(resp))
-        .catch((err) => response.status(400).json("Request Failed"))
-})
+  Players.updateOne({ _id: request.params.id }, { $set: request.body })
+    .then((resp) => response.status(200).json(resp))
+    .catch((err) => response.status(400).json("Request Failed"));
+});
 
 /**
  * @swagger
@@ -133,9 +134,9 @@ playerRouter.patch("/:id", (request, response) => {
  *        type: string
  * */
 playerRouter.delete("/:id", (request, response) => {
-    Tasks.deleteOne({ _id: request.params.id })
-        .then((resp) => response.status(200).json(resp))
-        .catch((err) => response.status(400).json("Request Failed"))
-})
+  Players.deleteOne({ _id: request.params.id })
+    .then((resp) => response.status(200).json(resp))
+    .catch((err) => response.status(400).json("Request Failed"));
+});
 
-module.exports = playerRouter
+module.exports = playerRouter;
