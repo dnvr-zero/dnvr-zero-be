@@ -3,8 +3,11 @@ import mongoose from 'mongoose';
 import swaggerDocs from '../src/swagger/swaggerdocs'
 import swaggerUi from 'swagger-ui-express';
 import axios from 'axios';
-const cors = require('cors');
-require('dotenv/config');
+import cors from 'cors';
+import 'dotenv/config';
+import taskRouter from './routes/tasks';
+import playerRouter from './routes/players';
+import groupRouter from './routes/groups';
 
 const app = express();
 
@@ -14,16 +17,10 @@ app.use(
   })
 );
 
-const taskRouter = require('./routes/tasks');
-const playerRouter = require('./routes/players');
-const groupRouter = require('./routes/groups');
-
 app.use(express.json())
 app.use("/tasks", taskRouter)
 app.use("/players", playerRouter)
 app.use("/groups", groupRouter)
-
-const PORT = 8000;
 
 app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocs()));
 
@@ -83,6 +80,6 @@ mongoose
   .catch((err) => console.log('error'));
 
 // server up
-app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
 
 module.exports = app;
