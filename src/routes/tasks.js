@@ -1,7 +1,7 @@
 import express from "express"
 
 const router = express.Router()
-const Tasks = require("../models/Tasks")
+const Tasks = require("../models/Tasks.js")
 
 // Routes
 /**

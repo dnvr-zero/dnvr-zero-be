@@ -2,30 +2,29 @@
 
 var _express = _interopRequireWildcard(require("express"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
-var _swaggerDocs = _interopRequireDefault(require("./src/swagger/swaggerDocs.js"));
+var _swaggerdocs = _interopRequireDefault(require("./swagger/swaggerdocs.cjs"));
 var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 var _axios = _interopRequireDefault(require("axios"));
+var _cors = _interopRequireDefault(require("cors"));
+require("dotenv/config");
+var _tasks = _interopRequireDefault(require("./routes/tasks"));
+var _players = _interopRequireDefault(require("./routes/players"));
+var _groups = _interopRequireDefault(require("./routes/groups"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-const cors = require('cors');
-require('dotenv/config');
 const app = (0, _express.default)();
-app.use(cors({
+app.use((0, _cors.default)({
   origin: ['https://dnvr-zero-be.vercel.app/task', 'http://localhost:3000']
 }));
-const taskRouter = require('./routes/tasks');
-const playerRouter = require('./routes/players');
-const groupRouter = require('./routes/groups');
 app.use(_express.default.json());
-app.use("/tasks", taskRouter);
-app.use("/players", playerRouter);
-app.use("/groups", groupRouter);
-const PORT = 8000;
-app.use('/apidocs', _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup(_swaggerDocs.default));
+app.use("/tasks", _tasks.default);
+app.use("/players", _players.default);
+app.use("/groups", _groups.default);
+app.use('/apidocs', _swaggerUiExpress.default.serve, _swaggerUiExpress.default.setup((0, _swaggerdocs.default)()));
 app.get('/docs.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(_swaggerDocs.default);
+  res.send(_swaggerdocs.default);
 });
 
 // Routes
@@ -72,5 +71,5 @@ _mongoose.default.connect(process.env.DB_CONNECTION, {
 }).then(() => console.log('DB Connected ')).catch(err => console.log('error'));
 
 // server up
-app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
 module.exports = app;

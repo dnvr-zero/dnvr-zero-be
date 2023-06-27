@@ -1,7 +1,7 @@
 import express from "express"
 
 const playerRouter = express.Router()
-const Players = require("../models/Players")
+const Players = require("../models/Players.js")
 
 // Routes
 /**

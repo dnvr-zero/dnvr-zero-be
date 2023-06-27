@@ -3,15 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.swaggerDocs = void 0;
+exports.default = swaggerDocs;
 var _swaggerJsdoc = _interopRequireDefault(require("swagger-jsdoc"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const swaggerDocs = () => {
+function swaggerDocs() {
   const options = {
     swaggerDefinition: {
       openapi: '3.0.0',
       info: {
         title: 'dnvr-zero-be',
+        swagger: '2.0',
         summary: 'the backend endpoints for the SOA of dnvr-zero',
         description: 'documentation for the available endpoints to retrieve, update, delete data from dnvr-zero-be',
         version: '3.0.0',
@@ -85,7 +86,6 @@ const swaggerDocs = () => {
     apis: ['src/routes/*.js']
   };
   return (0, _swaggerJsdoc.default)(options);
-};
+}
 
 // const swaggerDocs = swaggerJsdoc(options);
-exports.swaggerDocs = swaggerDocs;
