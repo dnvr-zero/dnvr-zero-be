@@ -2,7 +2,7 @@
 
 var _express = _interopRequireWildcard(require("express"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
-var _swaggerdocs = _interopRequireDefault(require("./swagger/swaggerdocs.cjs"));
+var _swaggerdocs = _interopRequireDefault(require("./swagger/swaggerdocs.js"));
 var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
 var _axios = _interopRequireDefault(require("axios"));
 var _cors = _interopRequireDefault(require("cors"));
@@ -69,7 +69,4 @@ _mongoose.default.connect(process.env.DB_CONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('DB Connected ')).catch(err => console.log('error'));
-
-// server up
-app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
 module.exports = app;

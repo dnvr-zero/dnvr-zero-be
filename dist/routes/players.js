@@ -137,7 +137,7 @@ playerRouter.patch("/:id", (request, response) => {
  *        type: string
  * */
 playerRouter.delete("/:id", (request, response) => {
-  Tasks.deleteOne({
+  Players.deleteOne({
     _id: request.params.id
   }).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
