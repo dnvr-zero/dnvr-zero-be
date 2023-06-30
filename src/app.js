@@ -75,7 +75,7 @@ app.get("/oauth/redirect", (req, res) => {
 const MONGODB_URI =
     process.env.NODE_ENV === "test"
         ? process.env.TEST_DB_CONNECTION
-        : process.env.DB_CONNECTION
+        : process.env.DEVELOPMENT_DB_CONNECTION
 
 // Database connection
 mongoose
