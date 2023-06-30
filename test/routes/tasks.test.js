@@ -15,3 +15,9 @@ describe("POST /tasks", () => {
         await request(app).post("/tasks").send(newTask).expect(201)
     })
 })
+
+describe("GET /tasks", () => {
+    it("returns 200", async () => {
+        await request(app).get("/tasks").expect(200)
+    })
+});
