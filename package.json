@@ -2,15 +2,15 @@
 	"name": "dnvr-zero-be",
 	"version": "1.0.0",
 	"description": "quick readme",
-	"main": "src/app.js",
+	"main": "src/index.js",
 	"directories": {
 		"test": "test"
 	},
 	"scripts": {
-		"test": "jest",
+		"test": "NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit",
 		"build": "rimraf dist && babel src --out-dir dist --copy-files",
-		"start": "node dist/app.js",
-		"start:dev": "nodemon --exec babel-node src/app.js"
+		"start": "NODE_ENV=production node dist/index.js",
+		"start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -43,5 +43,8 @@
 		"swagger-jsdoc": "^6.2.8",
 		"swagger-ui-express": "^4.6.3",
 		"vercel": "^30.2.2"
+	},
+	"transform": {
+		"\\.js$": "./node_modules/babel-jest"
 	}
 }
