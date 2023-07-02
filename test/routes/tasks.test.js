@@ -1,22 +1,10 @@
 import request from "supertest"
 import Tasks from "../../src/models/Tasks.js"
-const app = require("../../src/app")
-
-beforeEach(async () => {
-    const task = new Tasks({
-        name: 'test task name',
-        description: 'test description',
-        createdBy: 'foo person',
-        points: '100'
-    })
-
-    task.save()
-})
-
+import app from "../../src/app.js"
 
 afterAll(async () => {
-    await Tasks.deleteMany();
-});
+    await Tasks.deleteMany()
+})
 
 describe("POST /tasks", () => {
     const newTask = {
@@ -33,6 +21,7 @@ describe("POST /tasks", () => {
 
 describe("GET /tasks", () => {
     it("returns 200", async () => {
-        await request(app).get("/tasks").expect(200)
+        const test = await request(app).get("/tasks").expect(200)
+        expect(test.body.data).toBeTruthy
     })
 })
