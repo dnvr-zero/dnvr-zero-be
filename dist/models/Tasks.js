@@ -30,7 +30,5 @@ const TaskSchema = _mongoose.default.Schema({
   timestamps: true,
   versionKey: false
 });
-
-// module.exports = mongoose.model("Tasks", TaskSchema)
 var _default = _mongoose.default.model("Tasks", TaskSchema);
 exports.default = _default;

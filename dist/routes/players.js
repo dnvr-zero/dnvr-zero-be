@@ -8,7 +8,6 @@ var _express = _interopRequireDefault(require("express"));
 var _Players = _interopRequireDefault(require("../models/Players.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const playerRouter = _express.default.Router();
-// const Players = require("../models/Players.js")
 
 // Routes
 /**
