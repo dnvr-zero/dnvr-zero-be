@@ -2,6 +2,18 @@ import request from "supertest"
 import Tasks from "../../src/models/Tasks.js"
 const app = require("../../src/app")
 
+beforeEach(async () => {
+    const task = new Tasks({
+        name: 'test task name',
+        description: 'test description',
+        createdBy: 'foo person',
+        points: '100'
+    })
+
+    task.save()
+})
+
+
 afterAll(async () => {
     await Tasks.deleteMany();
 });
