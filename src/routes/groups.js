@@ -1,7 +1,6 @@
 import express from "express"
-
+import Groups from "../models/Groups.js"
 const groupRouter = express.Router()
-const Groups = require('../models/Groups.js')
 
 // Routes
 /**
@@ -48,4 +47,5 @@ groupRouter.get("/:id", (request, response) => {
         .catch((err) => response.status(400).json("Request Failed"))
 })
 
-module.exports = groupRouter
+// module.exports = groupRouter
+export default groupRouter

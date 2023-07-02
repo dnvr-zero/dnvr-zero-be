@@ -5,9 +5,9 @@ import swaggerUi from "swagger-ui-express"
 import axios from "axios"
 import cors from "cors"
 import "dotenv/config"
-import taskRouter from "./routes/tasks"
-import playerRouter from "./routes/players"
-import groupRouter from "./routes/groups"
+import taskRouter from "./routes/tasks.js"
+import playerRouter from "./routes/players.js"
+import groupRouter from "./routes/groups.js"
 
 const app = express()
 
@@ -86,4 +86,5 @@ mongoose
     .then(() => console.log("DB Connected "))
     .catch((err) => console.log("error"))
 
-module.exports = app
+// module.exports = app
+export default app

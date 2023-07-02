@@ -1,7 +1,7 @@
 import express from "express";
-
+import Players from "../models/Players.js"
 const playerRouter = express.Router()
-const Players = require("../models/Players.js")
+
 
 // Routes
 /**
@@ -139,4 +139,5 @@ playerRouter.delete("/:id", (request, response) => {
     .catch((err) => response.status(400).json("Request Failed"));
 });
 
-module.exports = playerRouter;
+// module.exports = playerRouter;
+export default playerRouter

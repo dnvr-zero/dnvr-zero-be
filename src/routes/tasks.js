@@ -1,7 +1,6 @@
 import express from "express"
-
+import Tasks from "../models/Tasks.js"
 const router = express.Router()
-const Tasks = require("../models/Tasks.js")
 
 // Routes
 /**
@@ -44,10 +43,10 @@ router.get("/", (request, response) => {
  *        description: Missing required field
  * */
 router.post("/", (request, response) => {
-    const { name, description, points, createdby } = request.body
+    const { name, description, points, createdBy } = request.body
     const task = new Tasks({
         name,
-        createdby,
+        createdBy,
         description,
         points,
     })
@@ -137,4 +136,4 @@ router.delete("/:id", (request, response) => {
         .catch((err) => response.status(400).json("Request Failed"))
 })
 
-module.exports = router
+export default router
