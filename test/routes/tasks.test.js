@@ -1,6 +1,6 @@
 import request from "supertest"
 import Tasks from "../../src/models/Tasks.js"
-const app = require("../../src/app")
+import app from "../../src/app"
 
 beforeEach(async () => {
     const task = new Tasks({
