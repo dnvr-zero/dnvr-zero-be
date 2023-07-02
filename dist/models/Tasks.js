@@ -1,5 +1,9 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _mongoose = _interopRequireDefault(require("mongoose"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 // const mongoose = require("mongoose")
@@ -26,4 +30,5 @@ const TaskSchema = _mongoose.default.Schema({
   timestamps: true,
   versionKey: false
 });
-module.exports = _mongoose.default.model("Tasks", TaskSchema);
+var _default = _mongoose.default.model("Tasks", TaskSchema);
+exports.default = _default;

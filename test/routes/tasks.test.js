@@ -1,33 +1,38 @@
-import router from "../../src/routes/tasks.js"
 import request from "supertest"
-import express from "express"
+import Tasks from "../../src/models/Tasks.js"
+import app from "../../src/app"
 
-// const baseURL = "http://localhost:8000"
-const app = express()
+beforeEach(async () => {
+    const task = new Tasks({
+        name: 'test task name',
+        description: 'test description',
+        createdBy: 'foo person',
+        points: '100'
+    })
 
-app.use(express.urlencoded({ extended: false }))
-app.use("/tasks", router)
+    task.save()
+})
 
-describe("GET /tasks", () => {
+
+afterAll(async () => {
+    await Tasks.deleteMany();
+});
+
+describe("POST /tasks", () => {
     const newTask = {
         name: "task name should not exist",
         description: "task description random",
         points: "100",
-        createdby: "chainsaw",
+        createdBy: "chainsaw",
     }
-    beforeAll(async () => {
-        await request(app).post("/tasks").send(newTask)
+
+    it("returns 201", async () => {
+        await request(app).post("/tasks").send(newTask).expect(201)
     })
-    afterAll(async () => {
-        await request(app).delete(`/tasks/${newTask.id}`)
+})
+
+describe("GET /tasks", () => {
+    it("returns 200", async () => {
+        await request(app).get("/tasks").expect(200)
     })
-    it("should return 200", (done) => {
-      request(app)
-        .get("/tasks")
-        .expect(200, done);
-    })
-    // it("should return tasks", async () => {
-    //   const response = await request(baseURL).get("/tasks");
-    //   expect(response.body.data.length >= 1).toBe(true);
-    // });
 })

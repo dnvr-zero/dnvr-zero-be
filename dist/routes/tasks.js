@@ -1,9 +1,13 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _express = _interopRequireDefault(require("express"));
+var _Tasks = _interopRequireDefault(require("../models/Tasks.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const router = _express.default.Router();
-const Tasks = require("../models/Tasks.js");
 
 // Routes
 /**
@@ -21,7 +25,7 @@ const Tasks = require("../models/Tasks.js");
  *        description: Request Failed
  * */
 router.get("/", (request, response) => {
-  Tasks.find().then(resp => response.status(200).json({
+  _Tasks.default.find().then(resp => response.status(200).json({
     data: resp,
     error: null
   })).catch(err => response.status(400).json("Request Failed"));
@@ -51,11 +55,11 @@ router.post("/", (request, response) => {
     name,
     description,
     points,
-    createdby
+    createdBy
   } = request.body;
-  const task = new Tasks({
+  const task = new _Tasks.default({
     name,
-    createdby,
+    createdBy,
     description,
     points
   });
@@ -81,7 +85,7 @@ router.post("/", (request, response) => {
  *        type: string
  * */
 router.get("/:id", (request, response) => {
-  Tasks.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  _Tasks.default.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
@@ -110,7 +114,7 @@ router.get("/:id", (request, response) => {
  *        type: string
  * */
 router.patch("/:id", (request, response) => {
-  Tasks.updateOne({
+  _Tasks.default.updateOne({
     _id: request.params.id
   }, {
     $set: request.body
@@ -138,8 +142,9 @@ router.patch("/:id", (request, response) => {
  *        type: string
  * */
 router.delete("/:id", (request, response) => {
-  Tasks.deleteOne({
+  _Tasks.default.deleteOne({
     _id: request.params.id
   }).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
-module.exports = router;
+var _default = router;
+exports.default = _default;
