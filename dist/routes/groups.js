@@ -1,9 +1,14 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _express = _interopRequireDefault(require("express"));
+var _Groups = _interopRequireDefault(require("../models/Groups.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const groupRouter = _express.default.Router();
-const Groups = require('../models/Groups.js');
+// const Groups = require('../models/Groups.js')
 
 // Routes
 /**
@@ -21,7 +26,7 @@ const Groups = require('../models/Groups.js');
  *        description: Request Failed
  * */
 groupRouter.get("/", (request, response) => {
-  Groups.find().then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  _Groups.default.find().then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
@@ -43,6 +48,9 @@ groupRouter.get("/", (request, response) => {
  *        type: string
  * */
 groupRouter.get("/:id", (request, response) => {
-  Groups.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  _Groups.default.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
-module.exports = groupRouter;
+
+// module.exports = groupRouter
+var _default = groupRouter;
+exports.default = _default;

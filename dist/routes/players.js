@@ -1,9 +1,14 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 var _express = _interopRequireDefault(require("express"));
+var _Players = _interopRequireDefault(require("../models/Players.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const playerRouter = _express.default.Router();
-const Players = require("../models/Players.js");
+// const Players = require("../models/Players.js")
 
 // Routes
 /**
@@ -21,7 +26,7 @@ const Players = require("../models/Players.js");
  *        description: Request Failed
  * */
 playerRouter.get("/", (request, response) => {
-  Players.find().then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  _Players.default.find().then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
@@ -51,7 +56,7 @@ playerRouter.post("/", (request, response) => {
     group_id,
     email
   } = request.body;
-  const player = new Players({
+  const player = new _Players.default({
     username,
     level,
     score,
@@ -80,7 +85,7 @@ playerRouter.post("/", (request, response) => {
  *        type: string
  * */
 playerRouter.get("/:id", (request, response) => {
-  Players.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  _Players.default.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
@@ -109,7 +114,7 @@ playerRouter.get("/:id", (request, response) => {
  *        type: string
  * */
 playerRouter.patch("/:id", (request, response) => {
-  Players.updateOne({
+  _Players.default.updateOne({
     _id: request.params.id
   }, {
     $set: request.body
@@ -137,8 +142,11 @@ playerRouter.patch("/:id", (request, response) => {
  *        type: string
  * */
 playerRouter.delete("/:id", (request, response) => {
-  Players.deleteOne({
+  _Players.default.deleteOne({
     _id: request.params.id
   }).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
-module.exports = playerRouter;
+
+// module.exports = playerRouter;
+var _default = playerRouter;
+exports.default = _default;
