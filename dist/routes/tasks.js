@@ -8,7 +8,6 @@ var _express = _interopRequireDefault(require("express"));
 var _Tasks = _interopRequireDefault(require("../models/Tasks.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const router = _express.default.Router();
-// const Tasks = require("../models/Tasks.js")
 
 // Routes
 /**
@@ -147,7 +146,5 @@ router.delete("/:id", (request, response) => {
     _id: request.params.id
   }).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
 });
-
-// module.exports = router
 var _default = router;
 exports.default = _default;

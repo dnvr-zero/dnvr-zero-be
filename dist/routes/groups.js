@@ -8,7 +8,6 @@ var _express = _interopRequireDefault(require("express"));
 var _Groups = _interopRequireDefault(require("../models/Groups.js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 const groupRouter = _express.default.Router();
-// const Groups = require('../models/Groups.js')
 
 // Routes
 /**
