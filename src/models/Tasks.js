@@ -1,8 +1,11 @@
 import mongoose from "mongoose"
-// const mongoose = require("mongoose")
 
 const TaskSchema = mongoose.Schema(
     {
+        _id: {
+            type: String,
+            required: false,
+        },
         name: {
             type: String,
             required: true,
