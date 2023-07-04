@@ -52,12 +52,14 @@ router.get("/", (request, response) => {
  * */
 router.post("/", (request, response) => {
   const {
+    _id,
     name,
     description,
     points,
     createdBy
   } = request.body;
   const task = new _Tasks.default({
+    _id,
     name,
     createdBy,
     description,
@@ -85,7 +87,10 @@ router.post("/", (request, response) => {
  *        type: string
  * */
 router.get("/:id", (request, response) => {
-  _Tasks.default.findById(request.params.id).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  _Tasks.default.findById(request.params.id).then(resp => response.status(200).json({
+    data: resp,
+    error: null
+  })).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
@@ -114,11 +119,15 @@ router.get("/:id", (request, response) => {
  *        type: string
  * */
 router.patch("/:id", (request, response) => {
-  _Tasks.default.updateOne({
+  _Tasks.default.findByIdAndUpdate({
     _id: request.params.id
   }, {
     $set: request.body
-  }).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  }, {
+    returnDocument: "after"
+  }).then(resp => response.status(200).json({
+    data: resp
+  })).catch(err => response.status(400).json("Request Failed"));
 });
 
 /**
@@ -130,7 +139,7 @@ router.patch("/:id", (request, response) => {
  *    summary: Use this endpoint to delete a single task
  *    description: if you have a task id, then include it in the http request, and it will be removed from the database; no params required
  *    responses:
- *      '200':
+ *      '202':
  *        description: A successful response
  *      '400':
  *        description: Request Failed
@@ -142,9 +151,11 @@ router.patch("/:id", (request, response) => {
  *        type: string
  * */
 router.delete("/:id", (request, response) => {
-  _Tasks.default.deleteOne({
+  _Tasks.default.findOneAndDelete({
     _id: request.params.id
-  }).then(resp => response.status(200).json(resp)).catch(err => response.status(400).json("Request Failed"));
+  }).then(resp => response.status(202).json({
+    data: resp
+  })).catch(err => response.status(400).json("Request Failed"));
 });
 var _default = router;
 exports.default = _default;
