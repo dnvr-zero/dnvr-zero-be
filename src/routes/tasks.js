@@ -43,8 +43,9 @@ router.get("/", (request, response) => {
  *        description: Missing required field
  * */
 router.post("/", (request, response) => {
-    const { name, description, points, createdBy } = request.body
+    const { _id, name, description, points, createdBy } = request.body
     const task = new Tasks({
+        _id,
         name,
         createdBy,
         description,
@@ -75,7 +76,7 @@ router.post("/", (request, response) => {
  * */
 router.get("/:id", (request, response) => {
     Tasks.findById(request.params.id)
-        .then((resp) => response.status(200).json(resp))
+        .then((resp) => response.status(200).json({ data: resp, error: null }))
         .catch((err) => response.status(400).json("Request Failed"))
 })
 
@@ -105,8 +106,12 @@ router.get("/:id", (request, response) => {
  *        type: string
  * */
 router.patch("/:id", (request, response) => {
-    Tasks.updateOne({ _id: request.params.id }, { $set: request.body })
-        .then((resp) => response.status(200).json(resp))
+    Tasks.findByIdAndUpdate(
+        { _id: request.params.id },
+        { $set: request.body },
+        { returnDocument: "after" }
+    )
+        .then((resp) => response.status(200).json({ data: resp }))
         .catch((err) => response.status(400).json("Request Failed"))
 })
 
@@ -119,7 +124,7 @@ router.patch("/:id", (request, response) => {
  *    summary: Use this endpoint to delete a single task
  *    description: if you have a task id, then include it in the http request, and it will be removed from the database; no params required
  *    responses:
- *      '200':
+ *      '202':
  *        description: A successful response
  *      '400':
  *        description: Request Failed
@@ -131,8 +136,8 @@ router.patch("/:id", (request, response) => {
  *        type: string
  * */
 router.delete("/:id", (request, response) => {
-    Tasks.deleteOne({ _id: request.params.id })
-        .then((resp) => response.status(200).json(resp))
+    Tasks.findOneAndDelete({ _id: request.params.id })
+        .then((resp) => response.status(202).json({ data: resp }))
         .catch((err) => response.status(400).json("Request Failed"))
 })
 
