@@ -182,7 +182,7 @@ now navigate to `localhost:8000/apidocs` and you'll see the Swagger UI
 
 ## Usage
 
-  This project will be live; Locating the live site will be listed here, when available
+  This project will be live; Locating the live site will be listed here, when available; if you're interested in helping with the DevOps of this project, please [drop us a line](mailto:MichaelDavidmarchand@gmail.com)!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
