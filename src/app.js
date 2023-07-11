@@ -13,10 +13,7 @@ const app = express()
 
 app.use(
     cors({
-        origin: [
-            "https://dnvr-zero-be.vercel.app/task",
-            "http://localhost:3000",
-        ],
+        origin: ["https://dnvr-zero-be.vercel.app", "http://localhost:3000"],
     })
 )
 
@@ -78,16 +75,28 @@ const MONGODB_URI =
         : process.env.DEVELOPMENT_DB_CONNECTION
 
 // Database connection
-mongoose
-    .connect(MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => console.log("DB Connected "))
-    .catch((err) => console.log("error"))
+if (process.env.MONGODB_URI) {
+    mongoose
+        .connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        .then(() => console.log("DB Connected "))
+        .catch((err) => console.log("error"))
+} else {
+    mongoose
+        .connect(MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        .then(() => console.log("DB Connected "))
+        .catch((err) => console.log("error"))
+}
 
-if(process.env.NODE_ENV !== "test") {  
-app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
-};
+if (process.env.NODE_ENV !== "test") {
+    app.listen(process.env.PORT, () =>
+        console.log(`App listening at port ${process.env.PORT}`)
+    )
+}
 // module.exports = app
 export default app
