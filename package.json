@@ -2,7 +2,7 @@
   "name": "dnvr-zero-be",
   "version": "1.0.0",
   "description": "quick readme",
-  "main": "src/index.js",
+  "main": "src/app.js",
   "directories": {
     "test": "test"
   },
@@ -10,8 +10,8 @@
   "scripts": {
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit",
     "build": "rimraf dist && babel src --out-dir dist --copy-files",
-    "start": "NODE_ENV=production node dist/index.js",
-    "start:dev": "NODE_ENV=development nodemon --exec babel-node src/index.js",
+    "start": "NODE_ENV=production node dist/app.js",
+    "start:dev": "NODE_ENV=development nodemon --exec babel-node src/app.js",
     "debug": "nodemon --inspect src/app.js"
   },
   "repository": {
