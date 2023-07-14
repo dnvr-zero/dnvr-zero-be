@@ -98,5 +98,8 @@ if (process.env.NODE_ENV !== "test") {
         console.log(`App listening at port ${process.env.PORT}`)
     )
 }
+
+app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
+
 // module.exports = app
 export default app

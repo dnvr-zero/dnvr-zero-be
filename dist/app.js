@@ -84,6 +84,8 @@ if (process.env.MONGODB_URI) {
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
 }
+app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
+
 // module.exports = app
 var _default = app;
 exports.default = _default;
