@@ -64,7 +64,7 @@ app.get("/oauth/redirect", (req, res) => {
         .then((response) => response.data.access_token)
         .then((token) => {
             accessToken = token
-            res.redirect(`http://localhost:3000/player-profile?token=${token}`)
+            res.redirect(`http://dnvr-zero.vercel.app/player-profile?token=${token}`)
         })
         .catch((err) => res.status(500).json({ err: err.message }))
 })
