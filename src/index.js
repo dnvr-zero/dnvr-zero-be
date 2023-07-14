@@ -2,4 +2,4 @@ import app from './app.js';
 import 'dotenv/config';
 
 // server up
-app.listen(8000, () => console.log(`App listening at port ${8000}`));
+app.listen(process.env.PORT, () => console.log(`App listening at port ${process.env.PORT}`));
