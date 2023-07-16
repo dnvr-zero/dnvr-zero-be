@@ -39,7 +39,7 @@
   </figcaption>
   </figure>
     <br />
-    <a href="http://sf0.org/"><strong>Visit the original website that is the inspiration for this project »</strong></a>
+    <a href="https://web.archive.org/web/20160303180923/http://sf0.org/"><strong>Visit the (archived version of the) original website that is the inspiration for this project »</strong></a>
     <br />
     <br />
     <a href="https://github.com/dnvr-zero/dnvr-zero-be">View Backend source code</a>
