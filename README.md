@@ -26,7 +26,7 @@
   <h1 align="center">DNVR Zero</h1>
 
   <p align="center">
-    <h3>DNVRzero (or Dnvr0) is a modernization of the wildly successful <strong><a href="http://sf0.org">SF0.org</a></strong></h3>
+    <h3>DNVRzero (or Dnvr0) is a modernization of the wildly successful <strong><a href="https://web.archive.org/web/20160303180923/http://sf0.org/">SF0.org</a></strong></h3>
     <p>The idea is simple, really: create a user, complete tasks, gain points, level up</p>
     <p>The fun comes from the users, and the tasks they invent, and how tasks are interpreted and completed</p>
     <p> None of this really means anything, so why not have some fun while doing it?</p>
